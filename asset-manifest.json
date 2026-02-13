@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/My-Portfolio/static/css/main.746e59bd.css",
+    "main.css": "/My-Portfolio/static/css/main.8ef13cb4.css",
     "main.js": "/My-Portfolio/static/js/main.87fb4baf.js",
     "static/js/453.9d77d8c1.chunk.js": "/My-Portfolio/static/js/453.9d77d8c1.chunk.js",
     "static/media/android-app-certificate.pdf": "/My-Portfolio/static/media/android-app-certificate.17e797b63d8f167d59cb.pdf",
@@ -9,12 +9,12 @@
     "static/media/full-stack-java-developer-certificate.pdf": "/My-Portfolio/static/media/full-stack-java-developer-certificate.99fa9642eec7f3264763.pdf",
     "static/media/profile.png": "/My-Portfolio/static/media/profile.cc976906a71bfece6f2e.png",
     "index.html": "/My-Portfolio/index.html",
-    "main.746e59bd.css.map": "/My-Portfolio/static/css/main.746e59bd.css.map",
+    "main.8ef13cb4.css.map": "/My-Portfolio/static/css/main.8ef13cb4.css.map",
     "main.87fb4baf.js.map": "/My-Portfolio/static/js/main.87fb4baf.js.map",
     "453.9d77d8c1.chunk.js.map": "/My-Portfolio/static/js/453.9d77d8c1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.746e59bd.css",
+    "static/css/main.8ef13cb4.css",
     "static/js/main.87fb4baf.js"
   ]
 }
