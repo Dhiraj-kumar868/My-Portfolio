@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/my-portfolio/static/css/main.746e59bd.css",
+    "main.js": "/my-portfolio/static/js/main.8f8de596.js",
+    "static/js/453.9d77d8c1.chunk.js": "/my-portfolio/static/js/453.9d77d8c1.chunk.js",
+    "static/media/android-app-certificate.pdf": "/my-portfolio/static/media/android-app-certificate.17e797b63d8f167d59cb.pdf",
+    "static/media/star-award.pdf": "/my-portfolio/static/media/star-award.0e243e95947dd35b06ab.pdf",
+    "static/media/react-certificate.pdf": "/my-portfolio/static/media/react-certificate.7c1eca702b0821017b7d.pdf",
+    "static/media/full-stack-java-developer-certificate.pdf": "/my-portfolio/static/media/full-stack-java-developer-certificate.99fa9642eec7f3264763.pdf",
+    "static/media/profile.png": "/my-portfolio/static/media/profile.cc976906a71bfece6f2e.png",
+    "index.html": "/my-portfolio/index.html",
+    "main.746e59bd.css.map": "/my-portfolio/static/css/main.746e59bd.css.map",
+    "main.8f8de596.js.map": "/my-portfolio/static/js/main.8f8de596.js.map",
+    "453.9d77d8c1.chunk.js.map": "/my-portfolio/static/js/453.9d77d8c1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.746e59bd.css",
+    "static/js/main.8f8de596.js"
+  ]
+}
