@@ -1,0 +1,39 @@
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with gradient -->
+  <defs>
+    <linearGradient id="bgGradient16" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1E293B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#334155;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="codeGradient16" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bracketGradient16" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EF4444;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Dark background -->
+  <rect width="16" height="16" rx="3" fill="url(#bgGradient16)"/>
+  
+  <!-- Code brackets -->
+  <path d="M4 5L3 6L4 7" stroke="url(#bracketGradient16)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M12 9L13 10L12 11" stroke="url(#bracketGradient16)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Code lines -->
+  <rect x="5" y="4" width="4" height="0.75" rx="0.25" fill="url(#codeGradient16)"/>
+  <rect x="5" y="5.5" width="6" height="0.75" rx="0.25" fill="url(#codeGradient16)" opacity="0.8"/>
+  <rect x="5" y="7" width="3" height="0.75" rx="0.25" fill="url(#codeGradient16)" opacity="0.6"/>
+  
+  <rect x="7" y="9" width="4" height="0.75" rx="0.25" fill="url(#codeGradient16)"/>
+  <rect x="7" y="10.5" width="5" height="0.75" rx="0.25" fill="url(#codeGradient16)" opacity="0.8"/>
+  <rect x="7" y="12" width="2" height="0.75" rx="0.25" fill="url(#codeGradient16)" opacity="0.6"/>
+  
+  <!-- Terminal cursor -->
+  <rect x="10" y="7" width="0.75" height="4" rx="0.125" fill="#10B981">
+    <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+  </rect>
+</svg>
