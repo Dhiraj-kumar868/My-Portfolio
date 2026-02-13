@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Code, Database, Globe, Cpu, Shield, Zap } from 'lucide-react';
 
@@ -73,25 +73,27 @@ const Skills = () => {
     ]
   };
 
-  const getAllSkills = () => {
+  const getAllSkills = useCallback(() => {
     return Object.values(skills).flat();
-  };
+  }, []);
 
-  const getFilteredSkills = () => {
+  const getFilteredSkills = useMemo(() => {
     if (activeCategory === 'all') {
       return getAllSkills();
     }
     return skills[activeCategory as keyof typeof skills] || [];
-  };
+  }, [activeCategory, getAllSkills]);
 
-  const getSkillColor = (level: number) => {
+  const getSkillColor = useCallback((level: number) => {
     if (level >= 90) return 'bg-green-500';
     if (level >= 80) return 'bg-blue-500';
     if (level >= 70) return 'bg-yellow-500';
     return 'bg-gray-500';
-  };
+  }, []);
 
-  const currentSkills = getFilteredSkills();
+  const handleCategoryChange = useCallback((categoryId: string) => {
+    setActiveCategory(categoryId);
+  }, []);
 
   return (
     <section id="skills" className="py-20 bg-gray-50 dark:bg-dark-bg">
@@ -100,7 +102,7 @@ const Skills = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
@@ -116,14 +118,14 @@ const Skills = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.4, delay: 0.05 }}
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-4 mb-12"
         >
           {skillCategories.map((category) => (
             <button
               key={category.id}
-              onClick={() => setActiveCategory(category.id)}
+              onClick={() => handleCategoryChange(category.id)}
               className={`flex items-center space-x-8 px-6 py-3 rounded-lg font-medium transition-all ${activeCategory === category.id
                 ? 'bg-primary-600 text-white shadow-md'
                 : 'bg-white dark:bg-dark-surface text-gray-700 dark:text-dark-text hover:bg-gray-100 dark:hover:bg-dark-card'
@@ -139,16 +141,16 @@ const Skills = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {currentSkills.map((skill, index) => (
+          {getFilteredSkills.map((skill: { name: string; level: number; category: string }, index: number) => (
             <motion.div
               key={`${skill.name}-${index}`}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.1 + index * 0.05 }}
+              transition={{ duration: 0.3, delay: Math.min(0.05 + index * 0.01, 0.3) }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.02 }}
               className="bg-white dark:bg-dark-surface rounded-xl p-4 shadow-lg card-hover"
@@ -162,7 +164,7 @@ const Skills = () => {
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: `${skill.level}%` }}
-                    transition={{ duration: 1, delay: 0.2 + index * 0.05 }}
+                    transition={{ duration: 0.5, delay: Math.min(0.1 + index * 0.02, 0.4) }}
                     viewport={{ once: true }}
                     className={`h-full rounded-full ${getSkillColor(skill.level)}`}
                     style={{ minWidth: '16px' }}
