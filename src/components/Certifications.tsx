@@ -235,16 +235,16 @@ const Certifications = () => {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <div className="bg-white rounded-2xl p-8 shadow-lg">
-            <Award className="w-16 h-16 text-primary-600 mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Continuous Learning</h3>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              Committed to staying current with the latest technologies and industry best practices
+          <div className="bg-white dark:bg-dark-surface rounded-xl p-6 shadow-lg">
+            <Award className="w-12 h-12 text-primary-600 mx-auto mb-3" />
+            <h3 className="text-xl font-bold text-gray-900 mb-3">Continuous Learning</h3>
+            <p className="text-gray-600 mb-4 max-w-2xl mx-auto text-sm">
+              Committed to staying current with latest technologies and industry best practices
               through continuous learning and professional development.
             </p>
             <a
-              href="#contact"
-              className="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
+              href="#footer"
+              className="inline-flex items-center px-5 py-2.5 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors text-sm"
             >
               Discuss My Expertise
             </a>

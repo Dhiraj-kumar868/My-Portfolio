@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ArrowUp, MapPin, Phone, Calendar, Code, Briefcase, Award, ExternalLink } from 'lucide-react';
 
 const Footer = () => {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 200);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -232,18 +243,20 @@ const Footer = () => {
       </div>
 
       {/* Scroll to Top Button */}
-      <motion.button
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.3 }}
-        onClick={scrollToTop}
-        className="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-r from-primary-600 to-cyan-600 text-white rounded-full flex items-center justify-center shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 z-40 hover:scale-110 group"
-        aria-label="Scroll to top"
-        whileHover={{ y: -3 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <ArrowUp size={22} className="group-hover:animate-bounce" />
-      </motion.button>
+      {showScrollTop && (
+        <motion.button
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.3 }}
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-r from-primary-600 to-cyan-600 text-white rounded-full flex items-center justify-center shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 z-40 hover:scale-110 group"
+          aria-label="Scroll to top"
+          whileHover={{ y: -3 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <ArrowUp size={22} className="group-hover:animate-bounce" />
+        </motion.button>
+      )}
     </footer>
   );
 };
