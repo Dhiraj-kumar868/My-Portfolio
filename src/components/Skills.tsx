@@ -142,7 +142,7 @@ const Skills = () => {
               key={`${skill.name}-${index}`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: Math.min(0.1 + index * 0.05, 0.5) }}
+              transition={{ duration: 0.3, delay: Math.min(0.05 + index * 0.01, 0.2) }}
               viewport={{ once: true }}
               whileHover={{
                 scale: 1.05,

@@ -237,8 +237,8 @@ const Certifications = () => {
         >
           <div className="bg-white dark:bg-dark-surface rounded-xl p-6 shadow-lg">
             <Award className="w-12 h-12 text-primary-600 mx-auto mb-3" />
-            <h3 className="text-xl font-bold text-gray-900 mb-3">Continuous Learning</h3>
-            <p className="text-gray-600 mb-4 max-w-2xl mx-auto text-sm">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-dark-text mb-3">Continuous Learning</h3>
+            <p className="text-gray-600 dark:text-dark-text mb-4 max-w-2xl mx-auto text-sm">
               Committed to staying current with latest technologies and industry best practices
               through continuous learning and professional development.
             </p>
