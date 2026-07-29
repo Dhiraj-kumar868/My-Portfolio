@@ -83,7 +83,7 @@ const About = () => {
             <div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">Professional Profile</h3>
               <p className="text-gray-700 dark:text-dark-textSecondary leading-relaxed mb-4">
-                Results-driven Senior Software Engineer with 3+ years of specialized experience in
+                Results-driven Senior Software Engineer with 4+ years of specialized experience in
                 fintech application development and digital lending platforms. Proven track record
                 in leading engineering teams and delivering enterprise solutions for major financial
                 institutions including Jio Financial Services and IDBI Bank.

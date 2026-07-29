@@ -90,7 +90,7 @@ const Footer = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center p-4 bg-gray-800/50 rounded-xl backdrop-blur-sm border border-gray-700">
-                <div className="text-2xl font-bold text-primary-400">3+</div>
+                <div className="text-2xl font-bold text-primary-400">4+</div>
                 <div className="text-xs text-gray-400">Years Exp</div>
               </div>
               <div className="text-center p-4 bg-gray-800/50 rounded-xl backdrop-blur-sm border border-gray-700">

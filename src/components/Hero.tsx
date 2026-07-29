@@ -8,7 +8,7 @@ const Hero = () => {
   const { theme } = useTheme();
 
   const stats = [
-    { icon: Briefcase, label: 'Years Experience', value: '3+' },
+    { icon: Briefcase, label: 'Years Experience', value: '4+' },
     { icon: Code, label: 'Projects', value: '15+' },
     { icon: Award, label: 'Star Achiever', value: '2025' },
   ];
@@ -131,7 +131,7 @@ const Hero = () => {
                 className="absolute -top-4 -right-4 bg-white dark:bg-dark-surface rounded-lg shadow-lg p-3"
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold gradient-text">3+</div>
+                  <div className="text-2xl font-bold gradient-text">4+</div>
                   <div className="text-xs text-gray-600 dark:text-dark-textSecondary">Years</div>
                 </div>
               </motion.div>
