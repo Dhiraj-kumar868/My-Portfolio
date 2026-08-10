@@ -1,93 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, MapPin, Award, TrendingUp, Users, Zap } from 'lucide-react';
+import { Calendar, MapPin, CheckCircle2 } from 'lucide-react';
+import { experiencesData } from '../data/portfolioData';
 
-const Experience = () => {
-  const experiences = [
-    {
-      title: 'Senior Software Engineer',
-      company: 'Ezee.ai | Veefin Group',
-      location: 'Bengaluru, India',
-      period: 'July 2025 - Present',
-      type: 'current',
-      achievements: [
-        {
-          icon: Users,
-          text: 'Led and mentored a 7-member engineering team for Lend.ezee digital lending platform',
-          metric: null
-        },
-        {
-          icon: TrendingUp,
-          text: 'Architected enterprise-grade scalable solutions for high-volume financial transactions',
-          metric: '100K+ users'
-        },
-        {
-          icon: Award,
-          text: 'Established technical best practices and development workflows',
-          metric: '25% reduction in production issues'
-        }
-      ],
-      skills: ['Team Leadership', 'System Architecture', 'Fintech Solutions', 'Security Compliance']
-    },
-    {
-      title: 'Software Engineer',
-      company: 'Ezee.ai | Veefin Group',
-      location: 'Bengaluru, India',
-      period: 'June 2023 - June 2025',
-      type: 'past',
-      achievements: [
-        {
-          icon: TrendingUp,
-          text: 'Engineered web and mobile solutions for 10+ NBFCs and banking clients',
-          metric: '30% faster processing'
-        },
-        {
-          icon: Users,
-          text: 'Served major financial institutions including Jio Financial Services and IDBI Bank',
-          metric: '100K+ active users'
-        },
-        {
-          icon: Zap,
-          text: 'Integrated complex Aadhaar-based authentication systems',
-          metric: 'RBI compliant'
-        },
-        {
-          icon: Award,
-          text: 'Collaborated with cross-functional teams for feature-rich applications',
-          metric: '98% on-time delivery'
-        }
-      ],
-      skills: ['Full Stack Development', 'API Integration', 'Database Design', 'Performance Optimization']
-    },
-    {
-      title: 'Software Engineer Intern',
-      company: 'Ezee.ai | Veefin Group',
-      location: 'Bengaluru, India',
-      period: 'June 2022 - June 2023',
-      type: 'past',
-      achievements: [
-        {
-          icon: Zap,
-          text: 'Optimized critical platform services and reduced API latency',
-          metric: '40% reduction'
-        },
-        {
-          icon: TrendingUp,
-          text: 'Designed and developed Dataset web application for master data management',
-          metric: 'Led to full-time offer'
-        },
-        {
-          icon: Users,
-          text: 'Enhanced user experience for daily active clients',
-          metric: '1K+ users'
-        }
-      ],
-      skills: ['Performance Optimization', 'Web Development', 'API Design', 'Data Management']
-    }
-  ];
-
+const Experience: React.FC = () => {
   return (
-    <section id="experience" className="py-20 bg-gray-50 dark:bg-dark-bg">
+    <section id="experience" className="py-24 bg-gradient-to-b from-white to-gray-50 dark:from-dark-surface dark:to-dark-bg relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -97,101 +15,107 @@ const Experience = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-dark-text mb-4">
-            Professional <span className="gradient-text dark:dark-gradient-text">Experience</span>
+          <span className="px-4 py-1.5 bg-primary-100 dark:bg-dark-card text-primary-700 dark:text-primary-300 rounded-full text-xs font-bold uppercase tracking-wider inline-block mb-3">
+            Career Timeline
+          </span>
+          <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-dark-text mb-4">
+            Professional <span className="gradient-text">Experience</span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-dark-textSecondary max-w-3xl mx-auto">
-            A journey of innovation and excellence in fintech development
+          <p className="text-lg text-gray-600 dark:text-dark-textSecondary max-w-2xl mx-auto">
+            Demonstrated engineering leadership and full-stack execution across high-scale fintech environments
           </p>
         </motion.div>
 
-        {/* Timeline */}
+        {/* Timeline Container */}
         <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-primary-600 to-primary-300"></div>
+          {/* Vertical Timeline Line */}
+          <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-600 via-primary-400 to-cyan-500 rounded-full opacity-30"></div>
 
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className={`relative flex items-center mb-12 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+          <div className="space-y-12">
+            {experiencesData.map((exp, index) => (
+              <motion.div
+                key={exp.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
+                viewport={{ once: true }}
+                className={`relative flex flex-col md:flex-row items-center ${
+                  index % 2 === 0 ? 'md:flex-row-reverse' : ''
                 }`}
-            >
-              {/* Timeline Dot */}
-              <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-primary-600 rounded-full border-4 border-white shadow-lg z-10">
-                {exp.type === 'current' && (
-                  <div className="absolute inset-0 bg-primary-600 rounded-full animate-ping"></div>
-                )}
-              </div>
+              >
+                {/* Timeline Dot Indicator */}
+                <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-7 h-7 rounded-full bg-white dark:bg-dark-surface border-4 border-primary-600 z-20 flex items-center justify-center shadow-lg">
+                  {exp.type === 'current' && (
+                    <span className="w-2.5 h-2.5 rounded-full bg-green-500 animate-ping"></span>
+                  )}
+                </div>
 
-              {/* Content Card */}
-              <div className={`ml-16 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="bg-white dark:bg-dark-surface rounded-2xl shadow-lg p-8 card-hover"
-                >
-                  {/* Header */}
-                  <div className="mb-6">
-                    <div className="flex items-start justify-between mb-2">
+                {/* Card Container */}
+                <div className="w-full md:w-1/2 pl-12 md:pl-0 md:px-8">
+                  <div className="bg-white dark:bg-dark-card p-6 sm:p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-dark-border hover:border-primary-300 dark:hover:border-primary-700 transition-all group">
+                    {/* Header */}
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                       <div>
-                        <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-1">{exp.title}</h3>
-                        <div className="text-primary-600 dark:text-primary-400 font-semibold text-lg">{exp.company}</div>
+                        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-dark-text group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                          {exp.title}
+                        </h3>
+                        <div className="text-sm font-semibold text-primary-600 dark:text-primary-400">
+                          {exp.company}
+                        </div>
                       </div>
+
                       {exp.type === 'current' && (
-                        <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
-                          Current
+                        <span className="px-3 py-1 bg-green-100 text-green-800 dark:bg-green-950/80 dark:text-green-300 rounded-full text-xs font-bold uppercase tracking-wider">
+                          Current Role
                         </span>
                       )}
                     </div>
-                    <div className="flex items-center text-gray-600 dark:text-dark-textSecondary space-x-4 text-sm">
-                      <div className="flex items-center">
-                        <Calendar size={16} className="mr-1" />
+
+                    {/* Metadata */}
+                    <div className="flex flex-wrap items-center gap-4 text-xs font-medium text-gray-500 dark:text-dark-textSecondary mb-6">
+                      <span className="flex items-center gap-1">
+                        <Calendar size={14} className="text-primary-600" />
                         {exp.period}
-                      </div>
-                      <div className="flex items-center">
-                        <MapPin size={16} className="mr-1" />
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <MapPin size={14} className="text-primary-600" />
                         {exp.location}
-                      </div>
+                      </span>
+                    </div>
+
+                    {/* Achievements */}
+                    <div className="space-y-3 mb-6">
+                      {exp.achievements.map((ach, idx) => (
+                        <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-700 dark:text-dark-textSecondary">
+                          <CheckCircle2 size={16} className="text-primary-600 dark:text-primary-400 flex-shrink-0 mt-0.5" />
+                          <div>
+                            <span>{ach.text}</span>
+                            {ach.metric && (
+                              <span className="ml-2 font-bold text-primary-600 dark:text-primary-400 text-xs bg-primary-50 dark:bg-primary-950 px-2 py-0.5 rounded-full inline-block mt-1">
+                                ➔ {ach.metric}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Skills Tags */}
+                    <div className="flex flex-wrap gap-2 pt-4 border-t border-gray-100 dark:border-dark-border">
+                      {exp.skills.map((skill, idx) => (
+                        <span
+                          key={idx}
+                          className="px-2.5 py-1 bg-gray-100 dark:bg-dark-bg text-gray-700 dark:text-dark-text text-[11px] font-semibold rounded-lg"
+                        >
+                          {skill}
+                        </span>
+                      ))}
                     </div>
                   </div>
-
-                  {/* Achievements */}
-                  <div className="space-y-4 mb-6">
-                    {exp.achievements.map((achievement, achIndex) => (
-                      <div key={achIndex} className="flex items-start space-x-3">
-                        <div className="flex-shrink-0 w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center">
-                          <achievement.icon size={16} className="text-primary-600" />
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-gray-700 text-sm leading-relaxed dark:text-gray-200 text-left">{achievement.text}</p>
-                          {achievement.metric && (
-                            <span className="block text-primary-600 font-semibold text-sm text-left">
-                              {achievement.metric}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Skills */}
-                  <div className="flex flex-wrap gap-2">
-                    {exp.skills.map((skill, skillIndex) => (
-                      <span
-                        key={skillIndex}
-                        className="px-3 py-1 bg-secondary-100 text-secondary-700 rounded-full text-xs font-medium"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
-          ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

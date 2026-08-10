@@ -1,58 +1,50 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Zap, Shield, Users, Target, Rocket } from 'lucide-react';
+import { Code, Zap, Shield, Users, Target, Rocket, CheckCircle } from 'lucide-react';
+import { personalDetails } from '../data/portfolioData';
 
-const About = () => {
+const About: React.FC = () => {
   const coreCompetencies = [
     {
       icon: Code,
-      title: 'Full Stack Development',
-      description: 'End-to-end development of scalable web and mobile applications',
-      color: 'bg-blue-100 text-blue-600'
+      title: 'Full-Stack Fintech Systems',
+      description: 'End-to-end architecture of high-volume digital lending platforms & virtual accounting systems.',
+      color: 'bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400'
     },
     {
       icon: Users,
-      title: 'Team Leadership',
-      description: 'Leading and mentoring engineering teams to deliver excellence',
-      color: 'bg-green-100 text-green-600'
+      title: 'Engineering Leadership',
+      description: 'Leading and mentoring 7+ member engineering teams across production deliverables.',
+      color: 'bg-green-100 dark:bg-green-950 text-green-600 dark:text-green-400'
     },
     {
       icon: Zap,
-      title: 'Performance Optimization',
-      description: 'Achieving 30% faster processing and 40% reduced latency',
-      color: 'bg-yellow-100 text-yellow-600'
+      title: 'Performance & Optimization',
+      description: 'Achieved 40% reduction in API response latency and 30% faster data payload handling.',
+      color: 'bg-yellow-100 dark:bg-yellow-950 text-yellow-600 dark:text-yellow-400'
     },
     {
       icon: Shield,
-      title: 'Security & Compliance',
-      description: 'RBI-compliant systems with robust security protocols',
-      color: 'bg-red-100 text-red-600'
+      title: 'RBI Security Compliance',
+      description: 'Architecting RBI & UIDAI compliant biometric Aadhaar KYC authentication pipelines.',
+      color: 'bg-red-100 dark:bg-red-950 text-red-600 dark:text-red-400'
     },
     {
       icon: Target,
-      title: 'Fintech Solutions',
-      description: 'Specialized expertise in digital lending and payment systems',
-      color: 'bg-purple-100 text-purple-600'
+      title: 'Tier-1 Banking Solutions',
+      description: 'Direct enterprise impact for premier clients including Jio Financial Services and IDBI Bank.',
+      color: 'bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400'
     },
     {
       icon: Rocket,
-      title: 'Scalable Architecture',
-      description: 'Designing systems for 100,000+ active users',
-      color: 'bg-indigo-100 text-indigo-600'
+      title: 'Scalable Microservices',
+      description: 'Designing fault-tolerant Node.js & React architectures processing 100,000+ active users.',
+      color: 'bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400'
     }
   ];
 
-  const achievements = [
-    { number: '100K+', label: 'Active Users' },
-    { number: '10+', label: 'NBFC Clients' },
-    { number: '30%', label: 'Performance Boost' },
-    { number: '40%', label: 'Latency Reduction' },
-    { number: '98%', label: 'On-time Delivery' },
-    { number: '7', label: 'Team Members Led' }
-  ];
-
   return (
-    <section id="about" className="py-20 bg-white dark:bg-dark-surface">
+    <section id="about" className="py-24 bg-white dark:bg-dark-surface relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -62,82 +54,96 @@ const About = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-dark-text mb-4">
-            About <span className="gradient-text dark:dark-gradient-text">Me</span>
+          <span className="px-4 py-1.5 bg-primary-100 dark:bg-dark-card text-primary-700 dark:text-primary-300 rounded-full text-xs font-bold uppercase tracking-wider inline-block mb-3">
+            Who I Am
+          </span>
+          <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-dark-text mb-4">
+            About <span className="gradient-text">Me</span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-dark-textSecondary max-w-3xl mx-auto">
-            Senior Software Engineer passionate about building transformative fintech solutions
-            that drive business growth and enhance user experiences
+          <p className="text-lg text-gray-600 dark:text-dark-textSecondary max-w-2xl mx-auto">
+            Senior Software Engineer & Fintech Architect dedicated to crafting reliable, scalable software solutions
           </p>
         </motion.div>
 
-        {/* Professional Profile */}
+        {/* Profile Card */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-dark-card dark:to-dark-surface rounded-2xl p-8 mb-16"
+          className="bg-gradient-to-br from-primary-50/70 via-white to-secondary-50/70 dark:from-dark-card dark:via-dark-surface dark:to-dark-card rounded-3xl p-8 sm:p-10 border border-gray-100 dark:border-dark-border shadow-xl mb-16"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">Professional Profile</h3>
-              <p className="text-gray-700 dark:text-dark-textSecondary leading-relaxed mb-4">
-                Results-driven Senior Software Engineer with 4+ years of specialized experience in
-                fintech application development and digital lending platforms. Proven track record
-                in leading engineering teams and delivering enterprise solutions for major financial
-                institutions including Jio Financial Services and IDBI Bank.
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-7 space-y-4">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text">
+                Professional Profile
+              </h3>
+              <p className="text-gray-700 dark:text-dark-textSecondary leading-relaxed text-sm sm:text-base">
+                {personalDetails.bio}
               </p>
-              <p className="text-gray-700 dark:text-dark-textSecondary leading-relaxed">
-                Expert in architecting scalable, RBI-compliant systems for high-volume transactions,
-                consistently achieving significant performance improvements and operational excellence.
-              </p>
+              <div className="grid grid-cols-2 gap-3 pt-2">
+                <div className="flex items-center space-x-2 text-xs sm:text-sm font-semibold text-gray-800 dark:text-dark-text">
+                  <CheckCircle className="text-green-500" size={18} />
+                  <span>React & TypeScript Expert</span>
+                </div>
+                <div className="flex items-center space-x-2 text-xs sm:text-sm font-semibold text-gray-800 dark:text-dark-text">
+                  <CheckCircle className="text-green-500" size={18} />
+                  <span>Node.js Microservices</span>
+                </div>
+                <div className="flex items-center space-x-2 text-xs sm:text-sm font-semibold text-gray-800 dark:text-dark-text">
+                  <CheckCircle className="text-green-500" size={18} />
+                  <span>Flutter Cross-Platform</span>
+                </div>
+                <div className="flex items-center space-x-2 text-xs sm:text-sm font-semibold text-gray-800 dark:text-dark-text">
+                  <CheckCircle className="text-green-500" size={18} />
+                  <span>System Architecture & Mentorship</span>
+                </div>
+              </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              {achievements.map((achievement, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white dark:bg-dark-surface rounded-lg p-4 text-center shadow-lg"
+
+            {/* Achievement Highlights Matrix */}
+            <div className="lg:col-span-5 grid grid-cols-2 gap-4">
+              {personalDetails.stats.map((stat, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white dark:bg-dark-surface p-4 rounded-2xl border border-gray-100 dark:border-dark-border text-center shadow-md"
                 >
-                  <div className="text-2xl font-bold gradient-text mb-1">{achievement.number}</div>
-                  <div className="text-sm text-gray-600 dark:text-dark-textSecondary">{achievement.label}</div>
-                </motion.div>
+                  <div className="text-2xl font-extrabold gradient-text mb-1">{stat.value}</div>
+                  <div className="text-xs font-bold text-gray-800 dark:text-dark-text">{stat.label}</div>
+                  <div className="text-[10px] text-gray-500 dark:text-dark-textSecondary mt-0.5">{stat.description}</div>
+                </div>
               ))}
             </div>
           </div>
         </motion.div>
 
-        {/* Core Competencies */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          <h4 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-8 text-center">Core Competencies</h4>
+        {/* Core Competencies Grid */}
+        <div>
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-8 text-center">
+            Core Competencies
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {coreCompetencies.map((competency, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white dark:bg-dark-surface rounded-xl p-6 shadow-lg card-hover"
-              >
-                <div className={`w-12 h-12 rounded-lg ${competency.color} flex items-center justify-center mb-4`}>
-                  <competency.icon size={24} />
-                </div>
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-dark-text mb-2">{competency.title}</h4>
-                <p className="text-gray-600 dark:text-dark-textSecondary text-sm">{competency.description}</p>
-              </motion.div>
-            ))}
+            {coreCompetencies.map((comp, idx) => {
+              const Icon = comp.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: idx * 0.08 }}
+                  viewport={{ once: true }}
+                  className="bg-white dark:bg-dark-surface p-6 rounded-3xl border border-gray-100 dark:border-dark-border shadow-md hover:shadow-xl transition-all"
+                >
+                  <div className={`w-12 h-12 rounded-2xl ${comp.color} flex items-center justify-center mb-4`}>
+                    <Icon size={24} />
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 dark:text-dark-text mb-2">{comp.title}</h4>
+                  <p className="text-xs sm:text-sm text-gray-600 dark:text-dark-textSecondary leading-relaxed">{comp.description}</p>
+                </motion.div>
+              );
+            })}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

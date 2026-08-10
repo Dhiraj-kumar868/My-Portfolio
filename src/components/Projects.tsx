@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Github, ExternalLink } from 'lucide-react';
+import { Github, ArrowRight, MessageSquare } from 'lucide-react';
+import { projectsData } from '../data/portfolioData';
+import { ProjectItem } from '../types/portfolio';
+import ProjectModal from './ProjectModal';
 
-const Projects = () => {
+const Projects: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<string>('All');
+  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+
+  const categories = ['All', 'Fintech', 'Full-Stack', 'Mobile'];
+
+  const filteredProjects = activeTab === 'All'
+    ? projectsData
+    : projectsData.filter((p) => p.category === activeTab);
+
+  const handleWhatsAppProject = (title: string) => {
+    const text = encodeURIComponent(
+      `Hi Dhiraj, I saw your project "${title}" on your portfolio. I'd like to discuss a similar implementation!`
+    );
+    window.open(`https://wa.me/919827436646?text=${text}`, '_blank');
+  };
+
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-dark-surface">
+    <section id="projects" className="py-24 bg-white dark:bg-dark-surface relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -14,68 +33,139 @@ const Projects = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-dark-text mb-4">
-            Featured <span className="gradient-text">Projects</span>
+          <span className="px-4 py-1.5 bg-primary-100 dark:bg-dark-card text-primary-700 dark:text-primary-300 rounded-full text-xs font-bold uppercase tracking-wider inline-block mb-3">
+            Portfolio Highlights
+          </span>
+          <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-dark-text mb-4">
+            Featured <span className="gradient-text">Projects & Systems</span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-dark-textSecondary max-w-3xl mx-auto">
-            Innovative solutions that make a real impact in the fintech industry
+          <p className="text-lg text-gray-600 dark:text-dark-textSecondary max-w-2xl mx-auto">
+            Architecting production-grade fintech systems, virtual accounting platforms, and high-throughput data tools
           </p>
         </motion.div>
 
-        {/* Project Cards */}
-        <div className="max-w-4xl mx-auto">
-          {/* Project 1 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="bg-white dark:bg-dark-surface rounded-2xl p-8 shadow-lg card-hover"
-          >
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary-100 dark:bg-dark-card rounded-full flex items-center justify-center mx-auto mb-6">
-                <div className="text-3xl font-bold text-primary-600 dark:text-primary-400">01</div>
+        {/* Category Filters */}
+        <div className="flex justify-center gap-3 mb-12 flex-wrap">
+          {categories.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all ${
+                activeTab === tab
+                  ? 'bg-primary-600 text-white shadow-lg shadow-primary-600/30'
+                  : 'bg-gray-100 dark:bg-dark-card text-gray-700 dark:text-dark-text hover:bg-gray-200 dark:hover:bg-dark-border'
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {filteredProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="group bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-dark-card dark:via-dark-surface dark:to-dark-card rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-2xl border border-gray-100 dark:border-dark-border transition-all duration-300 flex flex-col justify-between"
+            >
+              <div>
+                {/* Header Badge */}
+                <div className="flex justify-between items-center mb-4">
+                  <span className="px-3 py-1 bg-primary-100 dark:bg-primary-950 text-primary-700 dark:text-primary-300 text-xs font-bold uppercase rounded-full">
+                    {project.category}
+                  </span>
+                  {project.featured && (
+                    <span className="px-3 py-1 bg-yellow-100 dark:bg-yellow-950 text-yellow-800 dark:text-yellow-300 text-[11px] font-bold rounded-full">
+                      ★ Featured Enterprise Project
+                    </span>
+                  )}
+                </div>
+
+                {/* Title */}
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-dark-text mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-xs font-semibold text-primary-600 dark:text-primary-400 mb-4">
+                  {project.subtitle}
+                </p>
+
+                {/* Short Description */}
+                <p className="text-gray-600 dark:text-dark-textSecondary text-xs sm:text-sm leading-relaxed mb-6">
+                  {project.description}
+                </p>
+
+                {/* Metrics */}
+                <div className="grid grid-cols-3 gap-2 mb-6 p-3 bg-white dark:bg-dark-bg rounded-2xl border border-gray-100 dark:border-dark-border">
+                  {project.metrics.map((m, idx) => (
+                    <div key={idx} className="text-center">
+                      <div className="text-sm sm:text-base font-extrabold text-gray-900 dark:text-dark-text">
+                        {m.value}
+                      </div>
+                      <div className="text-[10px] text-gray-500 dark:text-dark-textSecondary uppercase font-medium">
+                        {m.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Tech Pills */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.technologies.map((tech, idx) => (
+                    <span
+                      key={idx}
+                      className="px-2.5 py-1 bg-gray-200/60 dark:bg-dark-card text-gray-700 dark:text-dark-text text-[11px] font-semibold rounded-lg"
+                    >
+                      {tech.name}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">
-                BCMS - Business Correspondent Management System
-              </h3>
-              <p className="text-gray-700 dark:text-dark-textSecondary leading-relaxed mb-6">
-                Comprehensive virtual accounting system for business correspondents with seamless AePS transactional integration. Built with Flutter, Angular, Node.js, and MongoDB for 50,000+ business correspondents with real-time transaction processing and compliance features.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">Flutter</span>
-                <div className="flex-1 items-center">
-                  <div className="text-xs text-gray-600 dark:text-dark-textSecondary mb-1">Proficiency</div>
-                  <div className="w-full bg-gray-200 dark:bg-dark-border rounded-full h-2">
-                    <div className="bg-blue-500 dark:bg-blue-600 h-2 rounded-full" style={{ width: '90%' }}></div>
-                  </div>
-                </div>
-                <span className="px-3 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 rounded-full text-sm">Angular</span>
-                <div className="flex-1 items-center">
-                  <div className="text-xs text-gray-600 dark:text-dark-textSecondary mb-1">Proficiency</div>
-                  <div className="w-full bg-gray-200 dark:bg-dark-border rounded-full h-2">
-                    <div className="bg-red-500 dark:bg-red-600 h-2 rounded-full" style={{ width: '85%' }}></div>
-                  </div>
-                </div>
-                <span className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm">Node.js</span>
-                <div className="flex-1 items-center">
-                  <div className="text-xs text-gray-600 dark:text-dark-textSecondary mb-1">Proficiency</div>
-                  <div className="w-full bg-gray-200 dark:bg-dark-border rounded-full h-2">
-                    <div className="bg-green-500 dark:bg-green-600 h-2 rounded-full" style={{ width: '95%' }}></div>
-                  </div>
-                </div>
-                <span className="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 rounded-full text-sm">MongoDB</span>
-                <div className="flex-1 items-center">
-                  <div className="text-xs text-gray-600 dark:text-dark-textSecondary mb-1">Proficiency</div>
-                  <div className="w-full bg-gray-200 dark:bg-dark-border rounded-full h-2">
-                    <div className="bg-yellow-500 dark:bg-yellow-600 h-2 rounded-full" style={{ width: '88%' }}></div>
-                  </div>
+
+              {/* Actions Footer */}
+              <div className="pt-4 border-t border-gray-100 dark:border-dark-border flex items-center justify-between gap-3">
+                <button
+                  onClick={() => setSelectedProject(project)}
+                  className="inline-flex items-center text-xs sm:text-sm font-bold text-primary-600 dark:text-primary-400 hover:text-primary-700 transition-colors gap-1.5"
+                >
+                  Deep Architecture & Specs
+                  <ArrowRight size={16} />
+                </button>
+
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => handleWhatsAppProject(project.title)}
+                    className="p-2 rounded-lg bg-green-500/10 hover:bg-green-500/20 text-green-600 dark:text-green-400 transition-colors"
+                    title="Inquire about this project on WhatsApp"
+                  >
+                    <MessageSquare size={16} />
+                  </button>
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-lg bg-gray-100 dark:bg-dark-card text-gray-600 dark:text-dark-text hover:bg-gray-200 transition-colors"
+                      title="GitHub Repository"
+                    >
+                      <Github size={16} />
+                    </a>
+                  )}
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          ))}
         </div>
       </div>
+
+      {/* Project Modal Deep Dive */}
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </section>
   );
 };

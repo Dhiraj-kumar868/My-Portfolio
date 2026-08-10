@@ -10,22 +10,26 @@ import Education from './components/Education';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import WhatsAppButton from './components/WhatsAppButton';
 import './App.css';
 
 function App() {
   return (
     <ThemeProvider>
-      <div className="App">
+      <div className="App min-h-screen bg-gray-50 dark:bg-dark-bg text-gray-900 dark:text-dark-text transition-colors duration-300 font-sans selection:bg-primary-500 selection:text-white">
         <Header />
-        <Hero />
-        <About />
-        <Experience />
-        <Projects />
-        <Skills />
-        <Education />
-        <Certifications />
-        {/* <Contact /> */}
+        <main>
+          <Hero />
+          <About />
+          <Experience />
+          <Projects />
+          <Skills />
+          <Education />
+          <Certifications />
+          <Contact />
+        </main>
         <Footer />
+        <WhatsAppButton />
       </div>
     </ThemeProvider>
   );
